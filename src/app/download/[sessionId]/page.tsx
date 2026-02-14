@@ -26,7 +26,6 @@ export default function DownloadPage() {
       .then(data => {
         if (data.success) {
           setOrder(data);
-          // Clear cart after successful purchase
           try { localStorage.removeItem('soulclaw-cart'); } catch {}
         } else {
           setError(data.error || 'Order not found');
@@ -39,8 +38,9 @@ export default function DownloadPage() {
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
-        <div className="font-display text-2xl font-bold mb-4">Verifying payment...</div>
-        <p className="text-[#737373]">This will only take a moment.</p>
+        <div className="text-6xl mb-6 animate-bounce">🦞</div>
+        <div className="font-fun text-2xl font-bold mb-4">Verifying payment...</div>
+        <p className="font-hand text-xl text-[#6b6b6b]">Just a sec. Crunching claws.</p>
       </div>
     );
   }
@@ -48,73 +48,72 @@ export default function DownloadPage() {
   if (error || !order) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
-        <div className="font-display text-2xl font-bold mb-4 text-red-400">Something Went Wrong</div>
-        <p className="text-[#A3A3A3] mb-8">{error || 'Order not found. Check your email for the download link.'}</p>
-        <a href="/" className="text-amber-500 hover:underline">Back to Home</a>
+        <div className="text-6xl mb-6">😬</div>
+        <div className="font-fun text-2xl font-bold mb-4 text-[#FF6B6B]">Something Went Wrong</div>
+        <p className="text-[#6b6b6b] mb-8">{error || 'Order not found. Check your email for the download link.'}</p>
+        <a href="/" className="font-fun text-[#FF6B6B] font-bold hover:underline decoration-wavy">Back to Home</a>
       </div>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      {/* Success Header */}
+      {/* Success */}
       <div className="text-center mb-12">
-        <div className="w-16 h-16 rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center mx-auto mb-6">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <h1 className="font-display text-3xl font-bold tracking-tight uppercase mb-2">Payment Confirmed</h1>
-        <p className="text-[#A3A3A3]">Your agent kit{order.agents.length > 1 ? 's are' : ' is'} ready.</p>
+        <div className="text-7xl mb-6">🎉</div>
+        <h1 className="font-fun text-4xl font-bold mb-2">You&apos;re In!</h1>
+        <p className="font-hand text-2xl text-[#6b6b6b]">
+          Your agent{order.agents.length > 1 ? 's are' : ' is'} ready to come alive.
+        </p>
       </div>
 
       {/* Download Cards */}
       <div className="space-y-4 mb-12">
         {order.agents.map((agentId, i) => (
-          <div key={agentId} className="bg-[#111111] border border-[#262626] rounded-xl p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <div className="font-display text-lg font-bold">{order.agentNames[i]}</div>
-                <div className="text-xs text-[#737373]">Agent Personality Kit</div>
-              </div>
-            </div>
+          <div
+            key={agentId}
+            className="bg-white border-3 border-[#1a1a1a] rounded-2xl p-6"
+            style={{ borderWidth: '3px', boxShadow: '5px 5px 0px #4ECDC4' }}
+          >
+            <div className="font-fun text-xl font-bold mb-1">{order.agentNames[i]}</div>
+            <div className="font-hand text-base text-[#6b6b6b] mb-4">Personality Kit</div>
             <a
               href={order.downloadUrls[agentId] || '#'}
-              className="block w-full text-center bg-amber-500 text-black py-3 rounded-lg font-bold text-sm hover:bg-amber-400 transition-colors"
+              className="block w-full text-center bg-[#4ECDC4] text-white py-3 rounded-full font-fun font-bold border-2 border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a] hover:shadow-[1px_1px_0px_#1a1a1a] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               download
             >
-              Download ZIP
+              Download ZIP 📦
             </a>
           </div>
         ))}
       </div>
 
-      {/* Setup Instructions */}
-      <div className="bg-[#111111] border border-[#262626] rounded-xl p-6">
-        <h2 className="font-display text-lg font-bold mb-4 uppercase">Setup Instructions</h2>
-        <ol className="space-y-3 text-sm text-[#A3A3A3]">
+      {/* Setup */}
+      <div className="bg-white border-3 border-[#1a1a1a] rounded-2xl p-6 tilt-slight" style={{ borderWidth: '3px', boxShadow: '5px 5px 0px #9B5DE5' }}>
+        <h2 className="font-fun text-xl font-bold mb-4">Setup Guide</h2>
+        <ol className="space-y-3 font-hand text-lg text-[#6b6b6b]">
           <li className="flex gap-3">
-            <span className="font-mono text-amber-500 shrink-0">1.</span>
+            <span className="text-[#FF6B6B] font-bold">1.</span>
             <span>Unzip the downloaded folder</span>
           </li>
           <li className="flex gap-3">
-            <span className="font-mono text-amber-500 shrink-0">2.</span>
-            <span>Copy all files into your Clawdbot agent workspace directory</span>
+            <span className="text-[#4ECDC4] font-bold">2.</span>
+            <span>Copy all files into your Clawdbot agent workspace</span>
           </li>
           <li className="flex gap-3">
-            <span className="font-mono text-amber-500 shrink-0">3.</span>
+            <span className="text-[#9B5DE5] font-bold">3.</span>
             <span>Restart the agent (or start a new session)</span>
           </li>
           <li className="flex gap-3">
-            <span className="font-mono text-amber-500 shrink-0">4.</span>
-            <span>Done. Your agent is alive with personality.</span>
+            <span className="text-[#00BBF9] font-bold">4.</span>
+            <span>Done! Your agent is alive with personality 🦞</span>
           </li>
         </ol>
       </div>
 
       <div className="text-center mt-8 space-y-3">
-        <p className="text-xs text-[#737373]">Download link sent to <span className="text-[#A3A3A3]">{order.email}</span>. Link expires in 24 hours.</p>
-        <a href="https://discord.com/invite/clawd" target="_blank" rel="noopener" className="text-amber-500 text-sm hover:underline block">
+        <p className="font-hand text-base text-[#6b6b6b]">Download link also sent to <span className="font-bold">{order.email}</span></p>
+        <a href="https://discord.com/invite/clawd" target="_blank" rel="noopener" className="font-fun text-[#9B5DE5] font-bold hover:underline decoration-wavy block">
           Need help? Join our Discord
         </a>
       </div>
