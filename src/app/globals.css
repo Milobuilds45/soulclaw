@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Shantell+Sans:wght@300;400;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --bg: #FFFBF5;
@@ -16,8 +16,8 @@
   --blue: #00BBF9;
   --pink: #F9A8D4;
   --border: #e8e0d4;
-  --font-fun: 'Shantell Sans', cursive;
-  --font-hand: 'Caveat', cursive;
+  --font-fun: 'Fredoka', sans-serif;
+  --font-hand: 'Fredoka', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 

@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="font-fun text-2xl font-bold mb-2 flex items-center gap-2">
                 <span className="text-3xl">🦞</span> Soul<span className="text-[#FF6B6B]">Claw</span>
               </div>
-              <p className="text-[#6b6b6b] text-sm max-w-xs font-hand text-lg">Give your AI agents some personality. They deserve it.</p>
+              <p className="text-[#6b6b6b] max-w-xs font-hand text-base">Give your AI agents some personality. They deserve it.</p>
             </div>
             <div className="flex gap-12 text-sm">
               <div className="flex flex-col gap-2">
@@ -62,8 +62,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
           </div>
-          <div className="border-t-2 border-[#1a1a1a] py-6 text-center font-hand text-xl text-[#6b6b6b]">
-            Made with 🦞 by weirdos &middot; 2026
+          <div className="border-t-2 border-[#1a1a1a] py-6 text-center font-fun text-base text-[#6b6b6b]">
+            Made with 🦞 by weirdos · 2026
           </div>
         </footer>
       </body>
