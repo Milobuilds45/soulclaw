@@ -152,10 +152,11 @@ export type PricingTier = {
 };
 
 export const PRICING_TIERS: PricingTier[] = [
-  { id: 'single', name: 'Single Agent', price: 10, description: '1 pre-made personality kit', agents: 1 },
-  { id: 'duo', name: 'Duo Pack', price: 15, description: '2 agent kits (save $5)', agents: 2 },
-  { id: 'custom', name: 'Custom Blend', price: 25, description: 'Mixed traits, bespoke creation', agents: 1 },
-  { id: 'army', name: 'Army Builder', price: 40, description: '5 agents (team setup)', agents: 5 },
+  { id: 'single', name: 'Single Agent', price: 10, description: '1 personality kit', agents: 1 },
+  { id: 'duo', name: 'Duo Pack', price: 17, description: '2 agent kits — save 15%', agents: 2 },
+  { id: 'triple', name: 'Triple Threat', price: 22, description: '3 agent kits — save 27%', agents: 3 },
+  { id: 'squad', name: 'Squad', price: 27, description: '4 agent kits — save 33%', agents: 4 },
+  { id: 'army', name: 'Army Builder', price: 30, description: '5 agents — save 40%', agents: 5 },
 ];
 
 export function getAgent(slug: string): Agent | undefined {

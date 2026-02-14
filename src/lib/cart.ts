@@ -41,12 +41,19 @@ export function clearCart(): void {
   window.dispatchEvent(new Event('cart-updated'));
 }
 
+// Derek-approved pricing tiers
+const PRICE_TABLE: Record<number, number> = {
+  1: 10,
+  2: 17,
+  3: 22,
+  4: 27,
+  5: 30,
+};
+
 export function getCartTotal(cart: CartItem[]): number {
   const count = cart.length;
   if (count === 0) return 0;
-  if (count === 1) return 10;
-  if (count === 2) return 15;
-  if (count <= 4) return 15 + (count - 2) * 8;
-  // 5+ = army pricing
-  return 40 + (count - 5) * 7;
+  if (count <= 5) return PRICE_TABLE[count];
+  // 6+ = $30 base + $5 per extra
+  return 30 + (count - 5) * 5;
 }

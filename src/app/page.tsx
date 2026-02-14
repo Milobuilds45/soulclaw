@@ -91,17 +91,17 @@ export default function HomePage() {
         <h2 className="font-display text-3xl font-bold tracking-tight uppercase text-center mb-16">
           Pricing
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {PRICING_TIERS.map((tier) => (
-            <div key={tier.id} className={`bg-[#111111] border rounded-xl p-6 ${tier.id === 'duo' ? 'border-amber-500' : 'border-[#262626]'}`}>
-              {tier.id === 'duo' && (
-                <div className="text-[10px] text-amber-500 uppercase tracking-widest font-bold mb-3">Most Popular</div>
+            <div key={tier.id} className={`bg-[#111111] border rounded-xl p-6 ${tier.id === 'army' ? 'border-amber-500' : 'border-[#262626]'}`}>
+              {tier.id === 'army' && (
+                <div className="text-[10px] text-amber-500 uppercase tracking-widest font-bold mb-3">Best Value</div>
               )}
               <div className="font-display text-lg font-bold mb-1">{tier.name}</div>
               <div className="font-mono text-3xl font-bold text-amber-500 mb-3">${tier.price}</div>
               <p className="text-sm text-[#A3A3A3] mb-4">{tier.description}</p>
               <a href="/catalog" className={`block text-center py-2.5 rounded-lg font-semibold text-sm transition-colors ${
-                tier.id === 'duo'
+                tier.id === 'army'
                   ? 'bg-amber-500 text-black hover:bg-amber-400'
                   : 'border border-[#262626] text-[#A3A3A3] hover:border-amber-500/50 hover:text-white'
               }`}>

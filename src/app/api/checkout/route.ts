@@ -9,13 +9,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing email or items' }, { status: 400 });
     }
 
-    // Calculate price based on bundle tiers
+    // Derek-approved pricing tiers
+    const PRICE_CENTS: Record<number, number> = {
+      1: 1000,
+      2: 1700,
+      3: 2200,
+      4: 2700,
+      5: 3000,
+    };
     const count = items.length;
-    let totalCents: number;
-    if (count === 1) totalCents = 1000;
-    else if (count === 2) totalCents = 1500;
-    else if (count <= 4) totalCents = 1500 + (count - 2) * 800;
-    else totalCents = 4000 + (count - 5) * 700;
+    const totalCents = count <= 5
+      ? PRICE_CENTS[count]
+      : 3000 + (count - 5) * 500;
 
     const agentNames = items.map((i: { name: string }) => i.name).join(', ');
     const agentIds = items.map((i: { agentId: string }) => i.agentId).join(',');
