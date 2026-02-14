@@ -10,6 +10,7 @@ export interface Agent {
   price: number;
   avatarColor: string;
   initials: string;
+  mascot?: string; // Path to mascot image (e.g., '/mascots/ghostwriter.png')
 }
 
 export const AGENTS: Agent[] = [
@@ -24,6 +25,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#8B5CF6',
     initials: 'GW',
+    mascot: '/mascots/ghostwriter.png',
   },
   {
     id: 'scanner',
@@ -36,6 +38,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#22C55E',
     initials: 'SC',
+    mascot: '/mascots/scanner.png',
   },
   {
     id: 'chief',
@@ -48,6 +51,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#3B82F6',
     initials: 'CH',
+    mascot: '/mascots/chief.png',
   },
   {
     id: 'recruiter',
@@ -60,6 +64,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#6366F1',
     initials: 'RC',
+    mascot: '/mascots/recruiter.png',
   },
   {
     id: 'rep',
@@ -72,6 +77,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#F59E0B',
     initials: 'RP',
+    mascot: '/mascots/rep.png',
   },
   {
     id: 'enforcer',
@@ -84,6 +90,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#EF4444',
     initials: 'EN',
+    mascot: '/mascots/enforcer.png',
   },
   {
     id: 'hunter',
@@ -96,6 +103,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#F97316',
     initials: 'HT',
+    mascot: '/mascots/hunter.png',
   },
   {
     id: 'coordinator',
@@ -108,6 +116,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#EC4899',
     initials: 'CO',
+    mascot: '/mascots/coordinator.png',
   },
   {
     id: 'tutor',
@@ -120,6 +129,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#14B8A6',
     initials: 'TU',
+    mascot: '/mascots/tutor.png',
   },
   {
     id: 'briefer',
@@ -132,6 +142,7 @@ export const AGENTS: Agent[] = [
     price: 10,
     avatarColor: '#64748B',
     initials: 'BR',
+    mascot: '/mascots/briefer.png',
   },
 ];
 

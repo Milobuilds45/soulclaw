@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { AGENTS, CATEGORIES, type Agent } from '@/lib/agents';
 import { addToCart, getCart, removeFromCart, type CartItem } from '@/lib/cart';
 import { VOICE_SAMPLES } from '@/lib/voice-samples';
@@ -91,12 +92,24 @@ export default function CatalogPage() {
               {/* Header row */}
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <div
-                    className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold font-fun shrink-0 border-2 border-[#1a1a1a]"
-                    style={{ backgroundColor: agent.avatarColor + '22', color: agent.avatarColor }}
-                  >
-                    {agent.initials}
-                  </div>
+                  {agent.mascot ? (
+                    <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0 border-2 border-[#1a1a1a] bg-white">
+                      <Image
+                        src={agent.mascot}
+                        alt={agent.name}
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold font-fun shrink-0 border-2 border-[#1a1a1a]"
+                      style={{ backgroundColor: agent.avatarColor + '22', color: agent.avatarColor }}
+                    >
+                      {agent.initials}
+                    </div>
+                  )}
                   <div>
                     <div className="font-fun text-base font-bold leading-tight">{agent.name}</div>
                     <div className="text-[10px] font-fun font-bold uppercase" style={{ color: agent.avatarColor }}>{agent.category}</div>

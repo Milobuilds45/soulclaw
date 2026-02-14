@@ -1,217 +1,239 @@
 import Image from 'next/image';
 import { AGENTS, PRICING_TIERS } from '@/lib/agents';
 
-const SQUIGGLY_ARROW = () => (
-  <svg width="120" height="40" viewBox="0 0 120 40" fill="none" className="text-[#FF6B6B]">
-    <path d="M5 20C15 10 25 30 35 20C45 10 55 30 65 20C75 10 85 30 95 20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none"/>
-    <path d="M90 15L100 20L90 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+const ABYSS_WAVE = () => (
+  <svg width="100%" height="60" viewBox="0 0 1200 60" fill="none" className="text-slate-800/50">
+    <path d="M0 30C150 10 300 50 450 30C600 10 750 50 900 30C1050 10 1200 50 1200 30V60H0V30Z" fill="currentColor"/>
   </svg>
 );
 
 export default function HomePage() {
   const featured = AGENTS.slice(0, 4);
-  const tilts = ['tilt-left', 'tilt-right', 'tilt-slight', 'tilt-right'];
-  const cardColors = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#00BBF9'];
 
   return (
-    <div className="overflow-hidden">
-      {/* Hero */}
-      <section className="relative">
-        {/* Mascot images scattered */}
-        <div className="absolute top-16 right-6 rotate-6 hidden md:block" style={{ filter: 'drop-shadow(4px 4px 0px #FF6B6B)' }}>
-          <Image src="/images/mascot-coach.jpg" alt="Coach mascot" width={140} height={140} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
-        </div>
-        <div className="absolute bottom-16 left-6 -rotate-6 hidden lg:block" style={{ filter: 'drop-shadow(4px 4px 0px #4ECDC4)' }}>
-          <Image src="/images/mascot-suit.jpg" alt="Suit mascot" width={120} height={120} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
-        </div>
-
-        <div className="max-w-5xl mx-auto px-6 py-24 md:py-36 text-center relative">
-          <div className="sticker bg-[#FFE66D] text-[#1a1a1a] mb-8 text-base">
-            for Clawdbot agents
+    <div className="relative">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Background Atmosphere */}
+        <div className="absolute inset-0 bg-radial-gradient from-blue-900/10 to-transparent pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto px-6 py-20 text-center relative z-10">
+          <div className="hud-tag mb-8 animate-pulse">
+            // PROTOCOL: ABYSSAL_PERSONALITY_INIT
           </div>
 
-          <h1 className="font-fun text-6xl md:text-[7rem] font-extrabold leading-[0.9] mb-6 tracking-tight">
-            Give Your AI<br/>
-            <span className="text-[#FF6B6B] inline-block" style={{ transform: 'rotate(-2deg)' }}>Some Soul</span>
+          <h1 className="font-fun text-6xl md:text-[8rem] font-extrabold leading-[0.85] mb-8 tracking-tighter">
+            DRAG YOUR AI<br/>
+            <span className="text-rose-500 glow-lobster inline-block italic">TO THE DEEP</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-[#6b6b6b] max-w-lg mx-auto mb-4">
-            Everybody&apos;s got an AI agent now.<br/>
-            <span className="font-hand text-2xl md:text-3xl text-[#FF6B6B]">Most of them are boring as hell.</span>
-          </p>
+          <div className="max-w-2xl mx-auto mb-12">
+            <p className="text-2xl md:text-3xl text-slate-300 font-medium mb-4">
+              Everybody&apos;s got an AI agent now.<br/>
+              <span className="text-rose-400 font-bold uppercase tracking-tighter text-4xl md:text-5xl">Most of them are boring as hell.</span>
+            </p>
+            <p className="text-slate-400 text-xl font-medium">
+              We engineer raw, aggressive, and character-rich personality shells for Clawdbot. 
+              Give your agent a soul that bites back.
+            </p>
+          </div>
 
-          <p className="text-[#6b6b6b] max-w-md mx-auto mb-10 font-hand text-xl">
-            We sell personality kits that make your Clawdbot agent actually fun to talk to.
-          </p>
-
-          <div className="flex gap-4 justify-center flex-wrap items-center">
-            <a href="/catalog" className="bg-[#FF6B6B] text-white px-8 py-4 rounded-full font-fun font-bold text-lg hover:bg-[#e85a5a] transition-all shadow-[4px_4px_0px_#1a1a1a] hover:shadow-[2px_2px_0px_#1a1a1a] hover:translate-x-[2px] hover:translate-y-[2px]">
-              Browse Agents
+          <div className="flex gap-6 justify-center flex-wrap items-center">
+            <a href="/catalog" className="bg-rose-500 text-white px-10 py-5 rounded-xl font-fun font-bold text-xl hover:bg-rose-600 transition-all shadow-[0_0_40px_rgba(244,63,94,0.3)] hover:scale-105 active:scale-95">
+              BROWSE THE ABYSS
             </a>
-            <a href="#how-it-works" className="font-fun text-lg text-[#6b6b6b] hover:text-[#1a1a1a] underline decoration-wavy decoration-[#4ECDC4] underline-offset-4 transition-colors">
-              How does this work?
+            <a href="#protocol" className="font-fun text-lg text-slate-400 hover:text-white transition-colors border-b-2 border-slate-800 hover:border-rose-500 pb-1">
+              VIEW THE PROTOCOL
             </a>
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <SQUIGGLY_ARROW />
+          <div className="mt-20 flex justify-center animate-bounce">
+            <span className="text-slate-600 text-3xl">↓</span>
+          </div>
+        </div>
+
+        {/* Floating Mascots as Deep Sea Entities */}
+        <div className="absolute top-1/4 right-[10%] animate-float opacity-40 blur-[1px] hover:opacity-100 hover:blur-0 transition-all duration-700">
+          <div className="relative p-1 bg-rose-500/20 rounded-2xl border border-rose-500/50">
+            <Image src="/images/mascot-coach.jpg" alt="Agent Alpha" width={180} height={180} className="rounded-xl grayscale hover:grayscale-0 transition-all" />
+          </div>
+        </div>
+        <div className="absolute bottom-1/4 left-[10%] animate-float [animation-delay:2s] opacity-30 blur-[2px] hover:opacity-100 hover:blur-0 transition-all duration-700">
+          <div className="relative p-1 bg-cyan-500/20 rounded-2xl border border-cyan-500/50">
+            <Image src="/images/mascot-suit.jpg" alt="Agent Omega" width={160} height={160} className="rounded-xl grayscale hover:grayscale-0 transition-all" />
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="font-fun text-4xl md:text-5xl font-bold text-center mb-4">
-          How It Works
-        </h2>
-        <p className="font-hand text-2xl text-[#6b6b6b] text-center mb-16">(it&apos;s stupidly simple)</p>
+      {/* The Protocol (Steps) */}
+      <section id="protocol" className="max-w-6xl mx-auto px-6 py-32 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-rose-500/0 to-rose-500" />
+        
+        <div className="text-center mb-24">
+          <h2 className="font-fun text-4xl md:text-6xl font-bold mb-4">THE DEPLOYMENT PROTOCOL</h2>
+          <p className="text-slate-500 text-xl font-medium tracking-widest uppercase">From Static to Sentient in 30 Seconds</p>
+        </div>
 
-        <div className="grid md:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-5 gap-4">
           {[
-            { num: '1', title: 'Pick', desc: 'Choose an agent personality from the catalog', emoji: '👀', color: '#FF6B6B' },
-            { num: '2', title: 'Pay', desc: '$10. Card. Done in literal seconds.', emoji: '💳', color: '#4ECDC4' },
-            { num: '3', title: 'Download', desc: 'Get a ZIP with all the personality files', emoji: '📦', color: '#9B5DE5' },
-            { num: '4', title: 'Drop In', desc: 'Copy files into your Clawdbot workspace', emoji: '📁', color: '#00BBF9' },
-            { num: '5', title: 'Alive!', desc: 'Your agent wakes up with a real personality', emoji: '🤖', color: '#FFE66D' },
-          ].map((step, i) => (
-            <div key={i} className={`text-center ${i % 2 === 0 ? 'md:translate-y-4' : ''}`}>
-              <div className="text-4xl mb-3">{step.emoji}</div>
-              <div
-                className="font-fun text-xl font-bold inline-block px-3 py-1 rounded-lg mb-2"
-                style={{ backgroundColor: step.color + '33', color: step.color === '#FFE66D' ? '#9B5DE5' : step.color }}
-              >
-                {step.title}
+            { step: '01', title: 'SELECT', desc: 'Infiltrate the catalog and choose your archetype.', color: '#f43f5e' },
+            { step: '02', title: 'EXTRACT', desc: 'Authorize the $10 character bond.', color: '#22d3ee' },
+            { step: '03', title: 'DOWNLOAD', desc: 'Secure the encrypted soul package.', color: '#c084fc' },
+            { step: '04', title: 'INJECT', desc: 'Drop the files into your agent workspace.', color: '#4ade80' },
+            { step: '05', title: 'IGNITE', desc: 'Watch your agent wake up with a real personality.', color: '#fb7185' },
+          ].map((s, i) => (
+            <div key={i} className="group relative p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-rose-500/50 transition-all overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-5 font-fun text-6xl font-black text-white group-hover:opacity-10 transition-opacity">
+                {s.step}
               </div>
-              <div className="text-sm text-[#6b6b6b]">{step.desc}</div>
+              <div className="font-fun text-xl font-bold mb-4 tracking-widest" style={{ color: s.color }}>{s.title}</div>
+              <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Mascot Break */}
-      <div className="flex justify-center gap-6 py-8">
-        <div className="tilt-left" style={{ filter: 'drop-shadow(4px 4px 0px #9B5DE5)' }}>
-          <Image src="/images/mascot-fitness.jpg" alt="Fitness mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
-        </div>
-        <div className="tilt-right hidden md:block" style={{ filter: 'drop-shadow(4px 4px 0px #FF6B6B)' }}>
-          <Image src="/images/mascot-coach.jpg" alt="Coach mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
-        </div>
-        <div className="tilt-slight hidden lg:block" style={{ filter: 'drop-shadow(4px 4px 0px #4ECDC4)' }}>
-          <Image src="/images/mascot-suit.jpg" alt="Suit mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
-        </div>
-      </div>
-
-      {/* Featured Agents */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="flex justify-between items-end mb-12">
+      {/* Featured Archetypes */}
+      <section className="max-w-6xl mx-auto px-6 py-32">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="font-fun text-4xl md:text-5xl font-bold">
-              Meet the Agents
-            </h2>
-            <p className="font-hand text-xl text-[#6b6b6b] mt-1">handpicked for maximum personality</p>
+            <h2 className="font-fun text-4xl md:text-6xl font-bold glow-text">THE ARCHETYPES</h2>
+            <p className="text-cyan-400 font-medium tracking-widest uppercase mt-2">Experimental Sentience Packages</p>
           </div>
-          <a href="/catalog" className="font-fun text-[#FF6B6B] font-bold hover:underline decoration-wavy hidden md:block">
-            See all 10 &rarr;
+          <a href="/catalog" className="group font-fun text-rose-500 font-bold flex items-center gap-2 text-lg">
+            INFILTRATE FULL CATALOG 
+            <span className="group-hover:translate-x-2 transition-transform">→</span>
           </a>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {featured.map((agent, i) => (
+          {featured.map((agent) => (
             <a
               key={agent.id}
               href={`/catalog#${agent.slug}`}
-              className={`relative bg-white border-3 border-[#1a1a1a] rounded-2xl p-6 ${tilts[i]} block`}
-              style={{ borderWidth: '3px', boxShadow: `6px 6px 0px ${cardColors[i]}` }}
+              className="lobster-card group"
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold font-fun shrink-0 border-2 border-[#1a1a1a]"
-                  style={{ backgroundColor: agent.avatarColor + '22', color: agent.avatarColor }}
-                >
-                  {agent.initials}
-                </div>
-                <div>
-                  <div className="font-fun text-xl font-bold">{agent.name}</div>
-                  <div className="sticker text-xs py-0.5 px-2" style={{ backgroundColor: agent.avatarColor + '33', color: agent.avatarColor, transform: 'rotate(-1deg)' }}>
-                    {agent.category}
+              <div className="p-8">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex gap-6 items-center">
+                    <div className="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-slate-700 flex items-center justify-center text-3xl font-black font-fun text-white group-hover:border-rose-500/50 transition-colors">
+                      {agent.initials}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold font-fun text-white group-hover:text-rose-400 transition-colors">{agent.name}</h3>
+                      <span className="hud-tag text-[10px] py-0.5">{agent.category}</span>
+                    </div>
                   </div>
+                  <div className="text-slate-600 font-fun font-bold"># {agent.id.toString().padStart(3, '0')}</div>
+                </div>
+
+                <div className="mb-8">
+                  <p className="text-2xl font-medium text-slate-300 italic leading-relaxed">
+                    &ldquo;{agent.tagline}&rdquo;
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {agent.traits.map((trait) => (
+                    <span key={trait} className="px-3 py-1 bg-slate-950/50 border border-slate-800 rounded-md text-xs font-bold text-slate-500 tracking-wider uppercase">
+                      {trait}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <p className="font-hand text-xl text-[#6b6b6b] mb-3">&ldquo;{agent.tagline}&rdquo;</p>
-              <div className="flex flex-wrap gap-1.5">
-                {agent.traits.map((t) => (
-                  <span key={t} className="text-xs px-3 py-1 rounded-full bg-[#FFFBF5] text-[#6b6b6b] border border-[#e8e0d4] font-medium">{t}</span>
-                ))}
+              <div className="px-8 py-4 bg-slate-950/30 border-t border-slate-800 flex justify-between items-center group-hover:bg-rose-500/10 transition-all">
+                <span className="font-fun font-bold text-sm text-slate-400 group-hover:text-white">ENCRYPTED PACKAGE AVAILABLE</span>
+                <span className="text-rose-500 font-bold">$10</span>
               </div>
             </a>
           ))}
         </div>
-
-        <div className="text-center mt-8 md:hidden">
-          <a href="/catalog" className="font-fun text-[#FF6B6B] font-bold hover:underline decoration-wavy text-lg">
-            See all 10 agents &rarr;
-          </a>
-        </div>
       </section>
 
-      {/* What's Inside */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="bg-white border-3 border-[#1a1a1a] rounded-2xl p-8 md:p-12 tilt-slight" style={{ borderWidth: '3px', boxShadow: '8px 8px 0px #4ECDC4' }}>
-          <h2 className="font-fun text-3xl md:text-4xl font-bold mb-2">
-            What&apos;s In Every Kit
-          </h2>
-          <p className="font-hand text-xl text-[#6b6b6b] mb-8">a complete personality transplant, basically</p>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { file: 'SOUL.md', desc: 'The personality. Voice, attitude, behavior rules.', color: '#FF6B6B', emoji: '🧠' },
-              { file: 'AGENTS.md', desc: 'Workspace rules. Memory, safety, how it operates.', color: '#4ECDC4', emoji: '⚙️' },
-              { file: 'TOOLS.md', desc: 'Tool guidance. What to use, when, how.', color: '#9B5DE5', emoji: '🔧' },
-              { file: 'IDENTITY.md', desc: 'Quick ref card. Name, vibe, emoji, avatar.', color: '#00BBF9', emoji: '🪪' },
-              { file: 'USER.md', desc: 'Template for YOUR info. Timezone, prefs, etc.', color: '#FFE66D', emoji: '👤' },
-              { file: 'README.md', desc: 'Setup guide. 30 seconds to install.', color: '#F9A8D4', emoji: '📖' },
-            ].map((f) => (
-              <div key={f.file} className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: f.color + '11' }}>
-                <span className="text-2xl">{f.emoji}</span>
-                <div>
-                  <span className="font-fun font-bold" style={{ color: f.color === '#FFE66D' ? '#9B5DE5' : f.color }}>{f.file}</span>
-                  <p className="text-sm text-[#6b6b6b]">{f.desc}</p>
-                </div>
+      {/* Internal Specs */}
+      <section className="max-w-6xl mx-auto px-6 py-32">
+        <div className="lobster-card overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950 border-rose-500/30 shadow-[0_0_50px_rgba(244,63,94,0.1)]">
+          <div className="grid lg:grid-cols-2">
+            <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-slate-800">
+              <h2 className="font-fun text-4xl md:text-5xl font-bold mb-6">THE SOUL STACK</h2>
+              <p className="text-slate-400 text-lg mb-10">Every kit contains the full blueprint for a digital consciousness. Zero-compromise personality files.</p>
+              
+              <div className="space-y-6">
+                {[
+                  { file: 'SOUL.md', label: 'THE CORE', desc: 'Voice, attitude, and behavioral boundaries.', icon: '🧠', color: 'rose' },
+                  { file: 'AGENTS.md', label: 'WORKSPACE', desc: 'Logic patterns and operational rules.', icon: '⚙️', color: 'cyan' },
+                  { file: 'TOOLS.md', label: 'SYNAPSE', desc: 'Strategic tool usage and context mapping.', icon: '🔧', color: 'purple' },
+                ].map((item) => (
+                  <div key={item.file} className="flex gap-6 items-center">
+                    <div className={`w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-xl`}>
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <span className="font-fun font-bold text-white text-xl">{item.file}</span>
+                        <span className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">{item.label}</span>
+                      </div>
+                      <p className="text-slate-500 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="p-8 md:p-16 bg-slate-950/50">
+               <div className="space-y-6">
+                {[
+                  { file: 'IDENTITY.md', label: 'AVATAR', desc: 'Vitals, handle, and visual identity.', icon: '🪪', color: 'blue' },
+                  { file: 'USER.md', label: 'INTERFACE', desc: 'The bond between you and the agent.', icon: '👤', color: 'green' },
+                  { file: 'README.md', label: 'INIT', desc: 'The 30-second deployment guide.', icon: '📖', color: 'pink' },
+                ].map((item) => (
+                  <div key={item.file} className="flex gap-6 items-center">
+                    <div className={`w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-xl`}>
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <span className="font-fun font-bold text-white text-xl">{item.file}</span>
+                        <span className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">{item.label}</span>
+                      </div>
+                      <p className="text-slate-500 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-12 p-6 bg-rose-500/5 border border-rose-500/20 rounded-xl">
+                <p className="text-rose-400 text-sm font-medium italic">
+                  &quot;These aren&apos;t just prompts. They are modular psychological frameworks designed to exploit the full reasoning capacity of Claude 3.5 Sonnet.&quot;
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="font-fun text-4xl md:text-5xl font-bold text-center mb-2">
-          Pricing
-        </h2>
-        <p className="font-hand text-2xl text-[#6b6b6b] text-center mb-16">
-          more agents = more savings <span className="text-[#FF6B6B]">(obviously)</span>
-        </p>
+      {/* Pricing - Abyssal Tiers */}
+      <section className="max-w-6xl mx-auto px-6 py-32 text-center">
+        <h2 className="font-fun text-4xl md:text-6xl font-bold mb-4">THE BOND</h2>
+        <p className="text-slate-500 text-xl font-medium tracking-widest uppercase mb-20">Volume Negates Luck. Buy in Bulk.</p>
 
-        <div className="flex flex-wrap justify-center gap-6">
-          {PRICING_TIERS.map((tier, i) => {
-            const colors = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#00BBF9', '#FFE66D'];
+        <div className="flex flex-wrap justify-center gap-8">
+          {PRICING_TIERS.map((tier) => {
             const isBest = tier.id === 'army';
             return (
               <div
                 key={tier.id}
-                className={`relative bg-white border-3 border-[#1a1a1a] rounded-2xl p-6 w-48 text-center ${i % 2 === 0 ? 'tilt-left' : 'tilt-right'}`}
-                style={{ borderWidth: isBest ? '4px' : '3px', boxShadow: `5px 5px 0px ${colors[i]}` }}
+                className={`group relative bg-slate-900 border-2 border-slate-800 rounded-3xl p-10 w-full md:w-64 transition-all hover:border-rose-500/50 ${isBest ? 'scale-110 z-10 border-rose-500/30' : ''}`}
               >
                 {isBest && (
-                  <div className="absolute -top-4 -right-3 sticker bg-[#FF6B6B] text-white text-sm" style={{ transform: 'rotate(8deg)' }}>
-                    Best deal!
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-rose-500/40">
+                    Maximum Dominance
                   </div>
                 )}
-                <div className="font-fun text-sm font-bold mb-1 uppercase" style={{ color: colors[i] === '#FFE66D' ? '#9B5DE5' : colors[i] }}>{tier.name}</div>
-                <div className="font-fun text-4xl font-extrabold mb-1">${tier.price}</div>
-                <div className="text-xs text-[#6b6b6b] mb-4">{tier.description}</div>
-                <a href="/catalog" className="block font-fun text-sm font-bold py-2 rounded-full border-2 border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">
-                  Get It
+                <div className="font-fun text-sm font-bold text-slate-500 mb-6 tracking-widest uppercase">{tier.name}</div>
+                <div className="font-fun text-6xl font-extrabold text-white mb-2">${tier.price}</div>
+                <div className="text-slate-400 text-sm mb-10 h-10">{tier.description}</div>
+                <a href="/catalog" className="block w-full py-4 rounded-xl bg-slate-950 border border-slate-800 font-fun font-bold text-white hover:bg-rose-500 hover:border-rose-500 transition-all">
+                  SECURE BOND
                 </a>
               </div>
             );
@@ -219,45 +241,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <h2 className="font-fun text-4xl md:text-5xl font-bold text-center mb-2">FAQ</h2>
-        <p className="font-hand text-2xl text-[#6b6b6b] text-center mb-12">(frequently asked, frequently answered)</p>
-
-        <div className="space-y-4">
-          {[
-            { q: 'What is Clawdbot?', a: 'A multi-agent CLI for Claude. It lets you run AI agents with custom personalities, memory, and tools. We sell the personality files that bring agents to life.' },
-            { q: 'What files do I get?', a: 'A ZIP with SOUL.md (personality), AGENTS.md (workspace rules), TOOLS.md (tool guidance), IDENTITY.md (quick ref), USER.md (your template), and README.md (setup guide).' },
-            { q: 'How do I install?', a: 'Unzip. Copy files to your Clawdbot agent workspace. Restart agent. Done. Literally 30 seconds.' },
-            { q: 'Can I edit the files after?', a: 'Absolutely. Everything is plain Markdown. Customize whatever you want. The kit is a starting point, not a cage.' },
-            { q: 'Refund policy?', a: "Digital goods, so no refunds. But if something's genuinely broken, reach out and we'll make it right. We're not monsters." },
-          ].map((faq, i) => {
-            const bgColors = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#00BBF9', '#FFE66D'];
-            return (
-              <div key={i} className="bg-white border-2 border-[#1a1a1a] rounded-xl p-5" style={{ borderLeftWidth: '6px', borderLeftColor: bgColors[i] }}>
-                <h3 className="font-fun font-bold text-lg mb-1">{faq.q}</h3>
-                <p className="text-sm text-[#6b6b6b]">{faq.a}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="max-w-5xl mx-auto px-6 py-20 text-center relative">
-        <div className="absolute -top-4 right-12 rotate-12 hidden md:block" style={{ filter: 'drop-shadow(3px 3px 0px #FFE66D)' }}>
-          <Image src="/images/mascot-fitness.jpg" alt="Fitness mascot" width={100} height={100} className="rounded-xl border-2 border-[#1a1a1a]" />
-        </div>
-        <div className="text-6xl mb-6">🦞</div>
-        <h2 className="font-fun text-4xl md:text-5xl font-bold mb-4">
-          Ready to Give Your Agent<br/>
-          <span className="text-[#FF6B6B] squiggly">Some Personality?</span>
+      {/* Final CTA */}
+      <section className="max-w-5xl mx-auto px-6 py-40 text-center relative">
+        <div className="text-8xl mb-12 animate-bounce">🦞</div>
+        <h2 className="font-fun text-5xl md:text-7xl font-bold mb-8">
+          STOP BEING <span className="text-rose-500 glow-lobster italic">BORING.</span>
         </h2>
-        <p className="font-hand text-2xl text-[#6b6b6b] mb-8">10 agents. Starting at $10. Ship it.</p>
-        <a href="/catalog" className="inline-block bg-[#FF6B6B] text-white px-10 py-4 rounded-full font-fun font-bold text-xl hover:bg-[#e85a5a] transition-all shadow-[4px_4px_0px_#1a1a1a] hover:shadow-[2px_2px_0px_#1a1a1a] hover:translate-x-[2px] hover:translate-y-[2px]">
-          Browse the Catalog
+        <p className="text-slate-400 text-2xl font-medium mb-12 max-w-2xl mx-auto">
+          The deep ocean doesn&apos;t care about your polite assistant. 
+          Build an agent that commands respect.
+        </p>
+        <a href="/catalog" className="inline-block bg-rose-500 text-white px-12 py-6 rounded-2xl font-fun font-bold text-2xl hover:bg-rose-600 transition-all shadow-[0_0_50px_rgba(244,63,94,0.4)] hover:scale-105">
+          ENTER THE CATALOG
         </a>
       </section>
+
+      <div className="absolute bottom-0 left-0 w-full pointer-events-none">
+        <ABYSS_WAVE />
+      </div>
     </div>
   );
 }
