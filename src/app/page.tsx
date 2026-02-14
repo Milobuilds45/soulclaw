@@ -1,10 +1,5 @@
+import Image from 'next/image';
 import { AGENTS, PRICING_TIERS } from '@/lib/agents';
-
-const DOODLE_STARS = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="inline-block">
-    <path d="M16 2L18.5 12.5L28 16L18.5 19.5L16 30L13.5 19.5L4 16L13.5 12.5L16 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-  </svg>
-);
 
 const SQUIGGLY_ARROW = () => (
   <svg width="120" height="40" viewBox="0 0 120 40" fill="none" className="text-[#FF6B6B]">
@@ -22,9 +17,13 @@ export default function HomePage() {
     <div className="overflow-hidden">
       {/* Hero */}
       <section className="relative">
-        <div className="absolute top-20 right-10 text-[#FFE66D] opacity-50 rotate-12 text-6xl select-none hidden md:block">🦞</div>
-        <div className="absolute bottom-10 left-10 text-[#4ECDC4] opacity-30 -rotate-6 text-5xl select-none hidden md:block">✨</div>
-        <div className="absolute top-40 left-20 text-[#9B5DE5] opacity-20 rotate-45 select-none hidden md:block"><DOODLE_STARS /></div>
+        {/* Mascot images scattered */}
+        <div className="absolute top-16 right-6 rotate-6 hidden md:block" style={{ filter: 'drop-shadow(4px 4px 0px #FF6B6B)' }}>
+          <Image src="/images/mascot-coach.jpg" alt="Coach mascot" width={140} height={140} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
+        </div>
+        <div className="absolute bottom-16 left-6 -rotate-6 hidden lg:block" style={{ filter: 'drop-shadow(4px 4px 0px #4ECDC4)' }}>
+          <Image src="/images/mascot-suit.jpg" alt="Suit mascot" width={120} height={120} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
+        </div>
 
         <div className="max-w-5xl mx-auto px-6 py-24 md:py-36 text-center relative">
           <div className="sticker bg-[#FFE66D] text-[#1a1a1a] mb-8 text-base">
@@ -88,6 +87,19 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Mascot Break */}
+      <div className="flex justify-center gap-6 py-8">
+        <div className="tilt-left" style={{ filter: 'drop-shadow(4px 4px 0px #9B5DE5)' }}>
+          <Image src="/images/mascot-fitness.jpg" alt="Fitness mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
+        </div>
+        <div className="tilt-right hidden md:block" style={{ filter: 'drop-shadow(4px 4px 0px #FF6B6B)' }}>
+          <Image src="/images/mascot-coach.jpg" alt="Coach mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
+        </div>
+        <div className="tilt-slight hidden lg:block" style={{ filter: 'drop-shadow(4px 4px 0px #4ECDC4)' }}>
+          <Image src="/images/mascot-suit.jpg" alt="Suit mascot" width={160} height={160} className="rounded-2xl border-3 border-[#1a1a1a]" style={{ borderWidth: '3px' }} />
+        </div>
+      </div>
 
       {/* Featured Agents */}
       <section className="max-w-5xl mx-auto px-6 py-20">
@@ -232,7 +244,10 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="max-w-5xl mx-auto px-6 py-20 text-center">
+      <section className="max-w-5xl mx-auto px-6 py-20 text-center relative">
+        <div className="absolute -top-4 right-12 rotate-12 hidden md:block" style={{ filter: 'drop-shadow(3px 3px 0px #FFE66D)' }}>
+          <Image src="/images/mascot-fitness.jpg" alt="Fitness mascot" width={100} height={100} className="rounded-xl border-2 border-[#1a1a1a]" />
+        </div>
         <div className="text-6xl mb-6">🦞</div>
         <h2 className="font-fun text-4xl md:text-5xl font-bold mb-4">
           Ready to Give Your Agent<br/>
