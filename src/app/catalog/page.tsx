@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { AGENTS, CATEGORIES, type Agent } from '@/lib/agents';
 import { addToCart, getCart, removeFromCart, type CartItem } from '@/lib/cart';
+import { VOICE_SAMPLES } from '@/lib/voice-samples';
 
 const CARD_SHADOWS = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#00BBF9', '#FFE66D', '#F9A8D4', '#FF6B6B', '#4ECDC4', '#9B5DE5', '#00BBF9'];
 const TILTS = ['tilt-left', 'tilt-right', 'tilt-slight', 'tilt-left', 'tilt-right', 'tilt-slight', 'tilt-right', 'tilt-left', 'tilt-slight', 'tilt-right'];
@@ -10,6 +11,7 @@ const TILTS = ['tilt-left', 'tilt-right', 'tilt-slight', 'tilt-left', 'tilt-righ
 export default function CatalogPage() {
   const [category, setCategory] = useState('all');
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [expandedSamples, setExpandedSamples] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setCart(getCart());
@@ -27,6 +29,14 @@ export default function CatalogPage() {
     } else {
       addToCart(agent);
     }
+  };
+
+  const toggleSample = (id: string) => {
+    setExpandedSamples(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
   };
 
   const catColors: Record<string, string> = {
@@ -63,12 +73,14 @@ export default function CatalogPage() {
       </div>
 
       {/* Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
         {filtered.map((agent) => {
           const added = inCart(agent.id);
           const origIdx = AGENTS.findIndex(a => a.id === agent.id);
           const shadow = CARD_SHADOWS[origIdx];
           const tilt = TILTS[origIdx];
+          const sample = VOICE_SAMPLES[agent.id];
+          const isExpanded = expandedSamples.has(agent.id);
 
           return (
             <div
@@ -77,6 +89,7 @@ export default function CatalogPage() {
               className={`relative bg-white border-3 border-[#1a1a1a] rounded-2xl p-6 ${tilt} flex flex-col`}
               style={{ borderWidth: '3px', boxShadow: `6px 6px 0px ${shadow}` }}
             >
+              {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-start gap-3">
                   <div
@@ -99,17 +112,49 @@ export default function CatalogPage() {
               </div>
 
               <p className="font-hand text-xl text-[#6b6b6b] mb-3">&ldquo;{agent.tagline}&rdquo;</p>
-              <p className="text-sm text-[#6b6b6b] mb-4 flex-1">{agent.description}</p>
+              <p className="text-sm text-[#6b6b6b] mb-4">{agent.description}</p>
 
-              <div className="flex flex-wrap gap-1.5 mb-5">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {agent.traits.map((t) => (
                   <span key={t} className="text-xs px-3 py-1 rounded-full bg-[#FFFBF5] text-[#6b6b6b] border border-[#e8e0d4] font-medium">{t}</span>
                 ))}
               </div>
 
+              {/* Voice Sample */}
+              {sample && (
+                <div className="mb-5 flex-1">
+                  <button
+                    onClick={() => toggleSample(agent.id)}
+                    className="font-fun text-sm font-bold text-[#9B5DE5] hover:underline decoration-wavy mb-2 flex items-center gap-1"
+                  >
+                    {isExpanded ? '▼' : '▶'} See the difference
+                  </button>
+
+                  {isExpanded && (
+                    <div className="space-y-3 mt-3">
+                      <div className="text-xs font-fun font-bold text-[#6b6b6b] mb-1">
+                        User: {sample.prompt}
+                      </div>
+
+                      {/* Generic */}
+                      <div className="bg-[#FFF0F0] border border-[#FFB4B4] rounded-xl p-3">
+                        <div className="text-xs font-fun font-bold text-[#FF6B6B] mb-1">❌ Generic AI:</div>
+                        <p className="text-xs text-[#6b6b6b] leading-relaxed whitespace-pre-line">{sample.generic}</p>
+                      </div>
+
+                      {/* With Soul */}
+                      <div className="bg-[#F0FFF4] border border-[#B4FFD0] rounded-xl p-3">
+                        <div className="text-xs font-fun font-bold text-[#22C55E] mb-1">✅ With Soul:</div>
+                        <p className="text-xs text-[#1a1a1a] leading-relaxed whitespace-pre-line font-medium">{sample.withSoul}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <button
                 onClick={() => handleToggle(agent)}
-                className={`w-full py-3 rounded-full font-fun font-bold text-sm transition-all border-2 border-[#1a1a1a] ${
+                className={`w-full py-3 rounded-full font-fun font-bold text-sm transition-all border-2 border-[#1a1a1a] mt-auto ${
                   added
                     ? 'bg-[#4ECDC4] text-white shadow-[3px_3px_0px_#1a1a1a]'
                     : 'bg-[#FF6B6B] text-white shadow-[3px_3px_0px_#1a1a1a] hover:shadow-[1px_1px_0px_#1a1a1a] hover:translate-x-[2px] hover:translate-y-[2px]'
