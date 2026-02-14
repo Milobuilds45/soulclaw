@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #111111;
+  --bg-card: #1A1A1A;
+  --border: #262626;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A3A3A3;
+  --accent: #F59E0B;
+  --accent-hover: #D97706;
+  --success: #22C55E;
+  --error: #EF4444;
+}
+
+.font-display {
+  font-family: var(--font-display), 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+}
+
+.card-glow {
+  transition: all 0.2s ease;
+}
+.card-glow:hover {
+  border-color: #F59E0B33;
+  box-shadow: 0 0 24px #F59E0B11;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #F59E0B;
+  color: #000000;
+}
