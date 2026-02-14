@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 
+// Derek's Stripe Price IDs — mapped by agent count
+const PRICE_IDS: Record<number, string> = {
+  1: process.env.STRIPE_PRICE_1!,
+  2: process.env.STRIPE_PRICE_2!,
+  3: process.env.STRIPE_PRICE_3!,
+  4: process.env.STRIPE_PRICE_4!,
+  5: process.env.STRIPE_PRICE_5!,
+};
+
 export async function POST(request: NextRequest) {
   try {
     const { email, items } = await request.json();
@@ -9,18 +18,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing email or items' }, { status: 400 });
     }
 
-    // Derek-approved pricing tiers
-    const PRICE_CENTS: Record<number, number> = {
-      1: 1000,
-      2: 1700,
-      3: 2200,
-      4: 2700,
-      5: 3000,
-    };
-    const count = items.length;
-    const totalCents = count <= 5
-      ? PRICE_CENTS[count]
-      : 3000 + (count - 5) * 500;
+    const count = Math.min(items.length, 5);
+    const priceId = PRICE_IDS[count];
+
+    if (!priceId) {
+      return NextResponse.json({ error: 'Invalid cart size' }, { status: 400 });
+    }
 
     const agentNames = items.map((i: { name: string }) => i.name).join(', ');
     const agentIds = items.map((i: { agentId: string }) => i.agentId).join(',');
@@ -29,16 +32,7 @@ export async function POST(request: NextRequest) {
       payment_method_types: ['card'],
       customer_email: email,
       line_items: [{
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: count === 1
-              ? `SoulClaw Agent: ${agentNames}`
-              : `SoulClaw ${count}-Agent Pack: ${agentNames}`,
-            description: `${count} agent personality kit${count > 1 ? 's' : ''} for Clawdbot`,
-          },
-          unit_amount: totalCents,
-        },
+        price: priceId,
         quantity: 1,
       }],
       mode: 'payment',
@@ -47,6 +41,7 @@ export async function POST(request: NextRequest) {
       metadata: {
         agent_ids: agentIds,
         agent_names: agentNames,
+        agent_count: String(count),
         email,
       },
     });
